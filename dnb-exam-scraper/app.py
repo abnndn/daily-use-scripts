@@ -24,25 +24,27 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
 
-def send_actual_message(message, phone_number):
-    twilioPhoneNumber = +14155238886
+def send_actual_message(message, twilio_phone_number, phone_number):
     client = Client(account_sid, auth_token)
 
     client.messages.create(
         body=message,
-        from_=f'whatsapp:{twilioPhoneNumber}',
+        from_=f'whatsapp:{twilio_phone_number}',
         to=f'whatsapp:{phone_number}'
     )
     print(f'Message sent successfully to {phone_number}')
 
 def send_message(message, debug):
-    abhiPhoneNumber = +918875012802
-    ishiPhoneNumber = +916364519216
+    contacts = os.environ.get("RELEVANT_CONTACTS")
+    numbers_list = [num.strip() for num in contacts.split(',')]
+    twilio_phone_number = numbers_list[0]
+    abhi_phone_number = numbers_list[1]
+    ishi_phone_number = numbers_list[2]
 
     try:
-        send_actual_message(message, abhiPhoneNumber)
+        send_actual_message(message, twilio_phone_number, abhi_phone_number)
         if debug != True:
-            send_actual_message(message, ishiPhoneNumber)
+            send_actual_message(message, twilio_phone_number, ishi_phone_number)
     except Exception as e:
         logger.error(f"Error occurred while sending message: {str(e)}")
 
