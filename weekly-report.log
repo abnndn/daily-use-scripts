@@ -88,3 +88,36 @@
 2025-10-15 18:01:13,818 - __main__ - WARNING - 3. Rate limiting or geo-blocking
 2025-10-15 18:01:13,818 - __main__ - ERROR - All 3 attempts failed with 403 Forbidden. The website appears to have aggressive bot protection that specifically blocks automated requests from cloud environments like GitHub Actions.
 2025-10-15 18:01:13,984 - messaging.whatsapp_msg - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
+2025-10-15 18:30:38,094 - __main__ - INFO - Attempt 1 of 3
+2025-10-15 18:30:38,094 - __main__ - INFO - Starting multi-stage navigation simulation...
+2025-10-15 18:30:38,094 - __main__ - INFO - Stage 1: Visiting main site...
+2025-10-15 18:30:42,959 - __main__ - ERROR - 403 Forbidden - Bot detection triggered. Consider using VPN or different approach.
+2025-10-15 18:30:42,959 - __main__ - ERROR - HTTP Error: 403 Client Error: Forbidden for url: https://natboard.edu.in/
+2025-10-15 18:30:42,959 - __main__ - WARNING - 403 Forbidden on attempt 1. This might be due to:
+2025-10-15 18:30:42,959 - __main__ - WARNING - 1. GitHub Actions IP ranges being blocked
+2025-10-15 18:30:42,959 - __main__ - WARNING - 2. Advanced bot detection systems
+2025-10-15 18:30:42,959 - __main__ - WARNING - 3. Rate limiting or geo-blocking
+2025-10-15 18:30:42,959 - __main__ - INFO - Will retry with longer delays...
+2025-10-15 18:30:42,960 - __main__ - INFO - Attempt 2 of 3
+2025-10-15 18:30:42,960 - __main__ - INFO - Waiting 49.3 seconds before retry...
+2025-10-15 18:31:32,260 - __main__ - INFO - Starting multi-stage navigation simulation...
+2025-10-15 18:31:32,261 - __main__ - INFO - Stage 1: Visiting main site...
+2025-10-15 18:31:39,133 - __main__ - ERROR - 403 Forbidden - Bot detection triggered. Consider using VPN or different approach.
+2025-10-15 18:31:39,133 - __main__ - ERROR - HTTP Error: 403 Client Error: Forbidden for url: https://natboard.edu.in/
+2025-10-15 18:31:39,134 - __main__ - WARNING - 403 Forbidden on attempt 2. This might be due to:
+2025-10-15 18:31:39,134 - __main__ - WARNING - 1. GitHub Actions IP ranges being blocked
+2025-10-15 18:31:39,134 - __main__ - WARNING - 2. Advanced bot detection systems
+2025-10-15 18:31:39,134 - __main__ - WARNING - 3. Rate limiting or geo-blocking
+2025-10-15 18:31:39,134 - __main__ - INFO - Will retry with longer delays...
+2025-10-15 18:31:39,135 - __main__ - INFO - Attempt 3 of 3
+2025-10-15 18:31:39,135 - __main__ - INFO - Waiting 85.7 seconds before retry...
+2025-10-15 18:33:04,876 - __main__ - INFO - Starting multi-stage navigation simulation...
+2025-10-15 18:33:04,877 - __main__ - INFO - Stage 1: Visiting main site...
+2025-10-15 18:33:09,312 - __main__ - ERROR - 403 Forbidden - Bot detection triggered. Consider using VPN or different approach.
+2025-10-15 18:33:09,312 - __main__ - ERROR - HTTP Error: 403 Client Error: Forbidden for url: https://natboard.edu.in/
+2025-10-15 18:33:09,312 - __main__ - WARNING - 403 Forbidden on attempt 3. This might be due to:
+2025-10-15 18:33:09,312 - __main__ - WARNING - 1. GitHub Actions IP ranges being blocked
+2025-10-15 18:33:09,312 - __main__ - WARNING - 2. Advanced bot detection systems
+2025-10-15 18:33:09,312 - __main__ - WARNING - 3. Rate limiting or geo-blocking
+2025-10-15 18:33:09,313 - __main__ - ERROR - All 3 attempts failed with 403 Forbidden. The website appears to have aggressive bot protection that specifically blocks automated requests from cloud environments like GitHub Actions.
+2025-10-15 18:33:09,489 - messaging.whatsapp_msg - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
