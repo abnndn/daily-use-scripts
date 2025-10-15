@@ -18,7 +18,6 @@ content_paragraph = "2025 Session"
 
 logger = setup_logger(__name__)
 
-
 def get_browser_headers():
     """Get realistic browser headers to avoid bot detection."""
     user_agents = [

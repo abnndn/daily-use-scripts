@@ -1,11 +1,12 @@
 from twilio.rest import Client
-from dotenv import load_dotenv
 import os
 import sys
-sys.path.append('..')
-from util.logging import setup_logger
 
-load_dotenv()
+# Add project root to Python path for reliable imports in all environments
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
+from util.logging import setup_logger
 
 # Get logger for this module
 logger = setup_logger(__name__)
