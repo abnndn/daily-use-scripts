@@ -7,7 +7,7 @@ import logging.handlers
 # DNB website link - https://natboard.edu.in/viewnbeexam?exam=dnb
 url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
 
-content_paragraph = "2025 Session"
+content_paragraph = "2026 Session"
 
 account_sid = os.environ.get("TWILIO_ACCOUNT_SID")
 auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
