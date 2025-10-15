@@ -16,7 +16,7 @@ from util.logging import setup_logger
 main_website_url = "https://natboard.edu.in/"
 url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
 
-content_paragraph = "2025 Session"
+content_paragraph = "2026 Session"
 
 logger = setup_logger(__name__)
 
@@ -67,7 +67,6 @@ def scrap_website():
         return response.text
         
     except requests.exceptions.RequestException as e:
-        logger.error(f"Request failed: {str(e)}")
         raise
     finally:
         session.close()
@@ -78,10 +77,10 @@ def main():
             soup = BeautifulSoup(decoded_content, 'html.parser')
             results = [s for s in soup.stripped_strings if content_paragraph in s]
 
-            logger.info(f"Total entries found: {len(results)}")
+            logger.info(f'Total entries found: {len(results)}')
             if len(results) > 0:
                 text = " ".join(line.strip() for line in results[0].splitlines() if line.strip())
-                logger.info(f"First Entry: {text}")
+                logger.info(f'First Entry: {text}')
                 send_message(f'Found results for 2026 session for DNB exam: \n\n {text}. \n\n {url}', False)
                 return
             
