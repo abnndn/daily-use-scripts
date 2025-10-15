@@ -20,4 +20,4 @@ Twilio account details -
 Using Virtual environment to set it up.
 `python3 -m venv path/to/venv`
 `source path/to/venv/bin/activate`
-`python3 -m pip install b4`
+`python3 -m pip install bs4`
