@@ -1,4 +1,4 @@
-name: run dnb-examp-scraper
+name: run dnb-exam-scraper
 
 on:
   schedule:
@@ -26,7 +26,8 @@ jobs:
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-        run: python dnb-examp-scraper/app.py
+          RELEVANT_CONTACTS: ${{ secrets.RELEVANT_CONTACTS }}
+        run: python dnb-exam-scraper/app.py
 
       - name: commit files
         run: |
