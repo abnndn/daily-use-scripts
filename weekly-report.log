@@ -121,3 +121,5 @@
 2025-10-15 18:33:09,312 - __main__ - WARNING - 3. Rate limiting or geo-blocking
 2025-10-15 18:33:09,313 - __main__ - ERROR - All 3 attempts failed with 403 Forbidden. The website appears to have aggressive bot protection that specifically blocks automated requests from cloud environments like GitHub Actions.
 2025-10-15 18:33:09,489 - messaging.whatsapp_msg - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
+2025-10-15 18:34:14,488 - __main__ - ERROR - Request failed: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
+2025-10-15 18:34:14,489 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
