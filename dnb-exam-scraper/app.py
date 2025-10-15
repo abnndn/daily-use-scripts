@@ -1,78 +1,67 @@
-from twilio.rest import Client
 import requests
 from bs4 import BeautifulSoup
-import os
-import logging.handlers
+import sys
+import random
 
-# DNB website link - https://natboard.edu.in/viewnbeexam?exam=dnb
+sys.path.append('..')
+from messaging.whatsapp_msg import send_message
+from util.logging import setup_logger
+
+# DNB website link
 url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
 
-content_paragraph = "2026 Session"
+content_paragraph = "2025 Session"
 
-account_sid = os.environ.get("TWILIO_ACCOUNT_SID")
-auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
+logger = setup_logger(__name__)
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-logger_file_handler = logging.handlers.RotatingFileHandler(
-    "weekly-report.log",
-    maxBytes=1024 * 1024,
-    backupCount=1,
-    encoding="utf8",
-)
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-logger_file_handler.setFormatter(formatter)
-logger.addHandler(logger_file_handler)
 
-def send_actual_message(message, twilio_phone_number, phone_number):
-    client = Client(account_sid, auth_token)
+def get_browser_headers():
+    """Get realistic browser headers to avoid bot detection."""
+    user_agents = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0'
+    ]
 
-    client.messages.create(
-        body=message,
-        from_=f'whatsapp:{twilio_phone_number}',
-        to=f'whatsapp:{phone_number}'
-    )
-    print(f'Message sent successfully to {phone_number}')
-
-def send_message(message, debug):
-    contacts = os.environ.get("RELEVANT_CONTACTS")
-    numbers_list = [num.strip() for num in contacts.split(',')]
-    twilio_phone_number = numbers_list[0]
-    abhi_phone_number = numbers_list[1]
-    ishi_phone_number = numbers_list[2]
-
-    try:
-        send_actual_message(message, twilio_phone_number, abhi_phone_number)
-        if debug != True:
-            send_actual_message(message, twilio_phone_number, ishi_phone_number)
-    except Exception as e:
-        logger.error(f"Error occurred while sending message: {str(e)}")
+    return {
+        'User-Agent': random.choice(user_agents),
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'DNT': '1',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Referer': 'https://natboard.edu.in/'
+    }
 
 def scrap_website():
-    try:
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Referer': 'https://natboard.edu.in/'
-        }
+    # response = requests.get(url, headers=get_browser_headers(), timeout=30)
+    response = requests.get(url, headers=get_browser_headers())
 
-        response = requests.get(url, params=headers)
-        response.raise_for_status()
+    # Ensure proper response decoding
+    response.raise_for_status()
 
-        soup = BeautifulSoup(response.text, 'html.parser')
-        results = [s for s in soup.stripped_strings if content_paragraph in s]
+    # Handle potential encoding issues by explicitly setting encoding
+    if response.encoding is None or response.encoding == 'ISO-8859-1':
+        response.encoding = response.apparent_encoding or 'utf-8'
 
-        logger.info(f"Total entries found: {len(results)}")
+    # Get decoded content
+    return response.text
 
-        if len(results) > 0:
-            text = " ".join(line.strip() for line in results[0].splitlines() if line.strip())
-            logger.info(f"First Entry: {text}")
+def main():
+        try:
+            decoded_content = scrap_website()
+            soup = BeautifulSoup(decoded_content, 'html.parser')
+            results = [s for s in soup.stripped_strings if content_paragraph in s]
 
-            send_message(f'Found results for 2026 session for DNB exam: \n\n {text}. \n\n {url}',False)
+            logger.info(f"Total entries found: {len(results)}")
+            if len(results) > 0:
+                text = " ".join(line.strip() for line in results[0].splitlines() if line.strip())
+                logger.info(f"First Entry: {text}")
+                send_message(f'Found results for 2026 session for DNB exam: \n\n {text}. \n\n {url}', False)
+                return
+            
+        except Exception as e:
+            error_message = f'Error occurred while scraping website: {str(e)}'
+            logger.error(error_message)
 
-    except Exception as e:
-        error_message = f'Error occurred while scraping website: {str(e)}'
-        logger.info(error_message)
-        send_message(error_message, True)
-
-scrap_website()
+main()
