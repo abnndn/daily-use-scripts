@@ -1,36 +1,50 @@
 from twilio.rest import Client
 import requests
 from bs4 import BeautifulSoup
+import os
+import logging.handlers
 
 # DNB website link - https://natboard.edu.in/viewnbeexam?exam=dnb
 url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
 
-content_paragraph = "2025 Session"
+content_paragraph = "2026 Session"
 
-account_sid = '<GetFromTwilioConsole>'
-auth_token = '<GetFromTwilioConsole>'
+account_sid = os.environ.get("TWILIO_ACCOUNT_SID")
+auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger_file_handler = logging.handlers.RotatingFileHandler(
+    "weekly-report.log",
+    maxBytes=1024 * 1024,
+    backupCount=1,
+    encoding="utf8",
+)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logger_file_handler.setFormatter(formatter)
+logger.addHandler(logger_file_handler)
 
 def send_actual_message(message, phone_number):
     twilioPhoneNumber = +14155238886
     client = Client(account_sid, auth_token)
 
-    try:
-        client.messages.create(
-            body=message,
-            from_=f'whatsapp:{twilioPhoneNumber}',
-            to=f'whatsapp:{phone_number}'
-        )
-        print(f'Message sent successfully to {phone_number}')
-    except Exception as e:
-        print(f'Error sending message to {phone_number}: {str(e)}')
+    client.messages.create(
+        body=message,
+        from_=f'whatsapp:{twilioPhoneNumber}',
+        to=f'whatsapp:{phone_number}'
+    )
+    print(f'Message sent successfully to {phone_number}')
 
 def send_message(message, debug):
     abhiPhoneNumber = +918875012802
     ishiPhoneNumber = +916364519216
 
-    send_actual_message(message, abhiPhoneNumber)
-    if debug != True:
-        send_actual_message(message, ishiPhoneNumber)
+    try:
+        send_actual_message(message, abhiPhoneNumber)
+        if debug != True:
+            send_actual_message(message, ishiPhoneNumber)
+    except Exception as e:
+        logger.error(f"Error occurred while sending message: {str(e)}")
 
 def scrap_website():
     try:
@@ -38,20 +52,19 @@ def scrap_website():
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, 'html.parser')
-
         results = [s for s in soup.stripped_strings if content_paragraph in s]
 
-        for text in results:
-            cleaned = " ".join(line.strip() for line in text.splitlines() if line.strip())
-            print(f"Found results for 2026 session -> {cleaned}")
-            send_message(f"Found results for 2026 session for DNB exam: \n\n {cleaned}. \n\n {url}",
-                         False)
+        logger.info(f"Total entries found: {len(results)}")
+
+        if len(results) > 0:
+            text = " ".join(line.strip() for line in results[0].splitlines() if line.strip())
+            logger.info(f"First Entry: {text}")
+
+            send_message(f'Found results for 2026 session for DNB exam: \n\n {text}. \n\n {url}',False)
 
     except Exception as e:
-        error_message = f'Error scraping website with url {url}: {str(e)}'
-        print(error_message)
-
-        send_message(error_message,
-                     True)
+        error_message = f'Error occurred while scraping website: {str(e)}'
+        logger.info(error_message)
+        send_message(error_message, True)
 
 scrap_website()
