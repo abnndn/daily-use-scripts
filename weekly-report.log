@@ -3,3 +3,4 @@
 2025-10-15 14:49:50,716 - __main__ - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
 2025-10-15 14:57:04,604 - __main__ - INFO - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
 2025-10-15 14:57:04,770 - __main__ - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
+2025-10-15 15:16:54,292 - __main__ - INFO - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb&User-Agent=Mozilla%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F117.0.0.0+Safari%2F537.36&Accept-Language=en-US%2Cen%3Bq%3D0.9&Referer=https%3A%2F%2Fnatboard.edu.in%2F
