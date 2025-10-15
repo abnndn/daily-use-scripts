@@ -2,7 +2,7 @@ name: run dnb-examp-scraper
 
 on:
   schedule:
-    - cron: '0 6 * * 6' # At 6 AM every saturday
+    - cron: '*/2 * * * *' # At 6 AM every saturday
 
 jobs:
   build:
