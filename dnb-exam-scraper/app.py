@@ -13,10 +13,11 @@ from messaging.whatsapp_msg import send_message
 from util.logging import setup_logger
 
 # DNB website link
-main_website_url = "https://natboard.edu.in/"
-url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
+# url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
+url = "https://www.scrapethissite.com/pages/"
 
-content_paragraph = "2025 Session"
+# content_paragraph = "2025 Session"
+content_paragraph = "A Simple Example"
 
 logger = setup_logger(__name__)
 
@@ -52,8 +53,6 @@ def scrap_website():
     session = requests.Session()
     
     try:
-        session.get(main_website_url, headers=get_enhanced_headers(), timeout=30)
-        time.sleep(random.uniform(1, 3))
         response = session.get(url, headers=get_enhanced_headers(), timeout=30)
         
         # Ensure proper response decoding
