@@ -16,7 +16,7 @@ from util.logging import setup_logger
 main_website_url = "https://natboard.edu.in/"
 url = "https://natboard.edu.in/viewnbeexam?exam=dnb"
 
-content_paragraph = "2026 Session"
+content_paragraph = "2025 Session"
 
 logger = setup_logger(__name__)
 

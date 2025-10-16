@@ -1,6 +1,9 @@
 from twilio.rest import Client
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Add project root to Python path for reliable imports in all environments
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
