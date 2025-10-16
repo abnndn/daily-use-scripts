@@ -129,3 +129,4 @@
 2025-10-16 09:13:21,530 - messaging.whatsapp_msg - ERROR - Error occurred while sending message: HTTP 429 error: Unable to create record: Account ACe543401c0f672e4db37f105e0bf0e79e exceeded the 9 daily messages limit
 2025-10-16 16:05:17,718 - __main__ - INFO - Total entries found: 1
 2025-10-16 16:05:17,718 - __main__ - INFO - First Entry: Countries of the World: A Simple Example
+2025-10-16 16:10:46,925 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
