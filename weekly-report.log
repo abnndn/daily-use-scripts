@@ -130,3 +130,4 @@
 2025-10-16 16:05:17,718 - __main__ - INFO - Total entries found: 1
 2025-10-16 16:05:17,718 - __main__ - INFO - First Entry: Countries of the World: A Simple Example
 2025-10-16 16:10:46,925 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
+2025-10-18 06:31:15,428 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
