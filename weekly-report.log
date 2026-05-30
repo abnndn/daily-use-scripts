@@ -165,3 +165,4 @@
 2026-05-16 08:09:22,733 - __main__ - INFO - Total entries found: 2
 2026-05-16 08:09:22,733 - __main__ - INFO - First Entry: डीएनबी जून 2026 सत्र DNB June 2026 Session
 2026-05-23 08:24:46,087 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
+2026-05-30 08:32:44,395 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
