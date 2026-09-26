@@ -182,3 +182,4 @@
 2026-09-05 10:16:29,152 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
 2026-09-12 10:22:50,727 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
 2026-09-19 10:35:32,580 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
+2026-09-26 11:05:07,580 - __main__ - ERROR - Error occurred while scraping website: 403 Client Error: Forbidden for url: https://natboard.edu.in/viewnbeexam?exam=dnb
